@@ -1,0 +1,282 @@
+#VRML V2.0 utf8
+
+PROTO TickLabel [
+  field SFVec3f my_location 0 0 0
+  field MFString my_label "0" 
+]
+{
+  Transform {
+    translation IS my_location
+    children Billboard {
+      axisOfRotation 0 0 0
+      children Shape {
+        geometry Text {
+          fontStyle FontStyle {
+            size 0.2
+          }
+          string IS my_label
+        }
+      }
+    }
+  }
+}
+
+PROTO CoordFrame [
+  field SFColor Z_Color 0 0 1
+  field SFColor Y_Color 0 1 0
+  field SFColor X_Color 1 0 0
+  field MFString z_label "Z" 
+  field MFString y_label "Y" 
+  field MFString x_label "X" 
+]
+{
+  Group {
+    children [
+      Group {
+        children [
+          # X-axis description
+          Transform {
+            translation 0.5 0 0
+            rotation 0 0 1 1.57
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS X_Color
+                  diffuseColor IS X_Color
+                }
+              }
+              geometry Cylinder {
+                radius 0.02
+                height 1
+              }
+            }
+          }
+          Transform {
+            translation 1 0 0
+            rotation 0 0 1 -1.57
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS X_Color
+                  diffuseColor IS X_Color
+                }
+              }
+              geometry Cone {
+                height 0.2
+                bottomRadius 0.05
+              }
+            }
+          }
+          Transform {
+            translation 1.2 0 0
+            children Billboard {
+              axisOfRotation 0 0 0
+              children Shape {
+                appearance Appearance {
+                  material Material {
+                    emissiveColor IS X_Color
+                    diffuseColor IS X_Color
+                  }
+                }
+                geometry Text {
+                  fontStyle FontStyle {
+                    size 0.15
+                  }
+                  string IS x_label
+                }
+              }
+            }
+          }
+        ]
+      }
+      Group {
+        children [
+          # Y-axis description
+          Transform {
+            translation 0 0.5 0
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS Y_Color
+                  diffuseColor IS Y_Color
+                }
+              }
+              geometry Cylinder {
+                radius 0.02
+                height 1
+              }
+            }
+          }
+          Transform {
+            translation 0 1 0
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS Y_Color
+                  diffuseColor IS Y_Color
+                }
+              }
+              geometry Cone {
+                height 0.2
+                bottomRadius 0.05
+              }
+            }
+          }
+          Transform {
+            translation 0 1.2 0
+            children Billboard {
+              axisOfRotation 0 0 0
+              children Shape {
+                appearance Appearance {
+                  material Material {
+                    emissiveColor IS Y_Color
+                    diffuseColor IS Y_Color
+                  }
+                }
+                geometry Text {
+                  fontStyle FontStyle {
+                    size 0.15
+                  }
+                  string IS y_label
+                }
+              }
+            }
+          }
+        ]
+      }
+      Group {
+        children [
+          # Z-axis description
+          Transform {
+            translation 0 0 0.5
+            rotation 1 0 0 1.57
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS Z_Color
+                  diffuseColor IS Z_Color
+                }
+              }
+              geometry Cylinder {
+                radius 0.02
+                height 1
+              }
+            }
+          }
+          Transform {
+            translation 0 0 1
+            rotation 1 0 0 1.57
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  emissiveColor IS Z_Color
+                  diffuseColor IS Z_Color
+                }
+              }
+              geometry Cone {
+                height 0.2
+                bottomRadius 0.05
+              }
+            }
+          }
+          Transform {
+            translation 0 0 1.2
+            children Billboard {
+              axisOfRotation 0 0 0
+              children Shape {
+                appearance Appearance {
+                  material Material {
+                    emissiveColor IS Z_Color
+                    diffuseColor IS Z_Color
+                  }
+                }
+                geometry Text {
+                  fontStyle FontStyle {
+                    size 0.15
+                  }
+                  string IS z_label
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+
+Background {
+  skyColor [
+    1 1 1,
+    0.4 0.8 0.9,
+    0.5 0.7 0.6 
+  ]
+  skyAngle [0.78, 1.57]
+}
+Transform {
+  rotation -0.28108 -0.6786 -0.6786 2.5936
+  children [
+    CoordFrame {
+      Y_Color 0 0 1
+      X_Color 0 0 1
+      z_label "Z1" 
+      y_label "Y1" 
+      x_label "X1" 
+    }
+    Transform {
+      translation 0.1 0.1 0.1
+      children Shape {
+        appearance Appearance {
+          material Material {
+            transparency 0.7
+            specularColor 0.5 0.5 0.5
+            emissiveColor 0 0 0.13
+            diffuseColor 0 0 0.72
+            ambientIntensity 0
+          }
+        }
+        geometry Box {
+          size 0.2 0.2 0.2
+        }
+      }
+    }
+    DEF CF2 Transform {
+      rotation 1 0 0 0
+      children Transform {
+        children [
+          CoordFrame {
+            Z_Color 1 0 0
+            Y_Color 1 0 0
+            z_label "Z2" 
+            y_label "Y2" 
+            x_label "X2" 
+          }
+          Transform {
+            translation 0.1 0.1 0.1
+            children Shape {
+              appearance Appearance {
+                material Material {
+                  transparency 0.7
+                  specularColor 0.5 0.5 0.5
+                  emissiveColor 0.15 0 0.03
+                  diffuseColor 0.8 0 0.16
+                  ambientIntensity 0
+                }
+              }
+              geometry Box {
+                size 0.2 0.2 0.2
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+Group {
+  children DEF norm1 Viewpoint {
+    description "view 1"
+    position 0 0.5 3
+    orientation 1 0 0 0
+  }
+}
