@@ -1,3 +1,4 @@
+#mapSocket.py in ~/capstone directory on Turtlebot4
 import socket
 from rplidar import RPLidar,RPLidarException
 import math
